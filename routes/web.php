@@ -14,6 +14,7 @@
 
 Route::group(["middleware"=>"auth"], function(){
     Route::get('/admin',"Admin\AdminController@index")->name("admin");
+    Route::resource("admin/categories", "Admin\\Categories");
   });
 
 // Authentication Routes...
