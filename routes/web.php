@@ -15,6 +15,10 @@
 Route::group(["middleware"=>"auth"], function(){
     Route::get('/admin',"Admin\AdminController@index")->name("admin");
     Route::resource("admin/categories", "Admin\\Categories");
+    Route::get("admin/categories/{url}/edit", 'Admin\Categories@edit');
+    Route::post("admin/categories/{url}/edit", 'Admin\Categories@edit');
+    Route::put("admin/categories/{url}/edit", 'Admin\Categories@edit');
+
   });
 
 // Authentication Routes...

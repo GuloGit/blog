@@ -12,7 +12,7 @@
 @endsection
 @section("content")
     <a class="btn btn-success mb-4 mx-3" href="{{ route("categories.create") }}">Создать категорию</a>
-    <table class="table table-bordered table-hover table-striped mx-3" style="border-color: #1d643b">
+    <table class="table table-bordered table-hover table-striped mx-3">
         <colgroup>
             <col width="200">
             <col>
@@ -29,8 +29,8 @@
                 <td>{{$category->name}}</td>
                 <td>{{$category->description}}</td>
                 <td style="text-align:right">
-                    <a href="{{route("categories.edit", $category->url)}}" class="btn btn-outline-primary">Изменить</a>
-                    <form class="d-inline-block" action="{{route("categories.destroy", $category->url)}}" method="post">
+                    <a href="{{route("categories.edit", $category->id)}}" class="btn btn-outline-primary">Изменить</a>
+                    <form class="d-inline-block" action="{{route("categories.destroy", $category->id)}}" method="post">
                         @csrf
                         @method("DELETE")
                         <button type="submit" class="btn btn-outline-danger">Удалить</button>

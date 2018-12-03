@@ -25,7 +25,7 @@
         footer {
             position: absolute;
             bottom: 0;
-            width: 100%;
+            width: auto;
             height: 40px;
             }
     </style>
@@ -42,13 +42,20 @@
             </div>
             <button type="button" class="btn btn-outline-secondary btn-lg">ВЫХОД</button>
         </nav>
+        @if(Session::has("message"))
+            <div class="alert alert-{{Session::get("message-type")}} mx-3" role="alert">
+                {{Session::get("message")}}
+            </div>
+        @endif
         <h1 class="mb-3 my-4 mx-3">@yield("title")</h1>
         @yield("content")
-        <footer class=" row-fluid">
-            @section("footer")
-            &copy; Наша супер админ панель
-            @show
-        </footer>
+
+        @section("footer")
+            <footer>
+                &copy; Наша супер админ панель
+
+            </footer>
+        @show
     </div>
     @stack("scripts")
 </body>
