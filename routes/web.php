@@ -15,11 +15,11 @@
 Route::group(["middleware"=>"auth"], function(){
     Route::get('/admin',"Admin\AdminController@index")->name("admin");
     Route::resource("admin/categories", "Admin\\Categories");
-    Route::get("admin/categories/{url}/edit", 'Admin\Categories@edit');
-    Route::post("admin/categories/{url}/edit", 'Admin\Categories@edit');
-    Route::put("admin/categories/{url}/edit", 'Admin\Categories@edit');
+    Route::resource("admin/posts", "Admin\\Posts");
+    });
 
-  });
+Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('admin/register', 'Auth\RegisterController@register');
 
 // Authentication Routes...
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');

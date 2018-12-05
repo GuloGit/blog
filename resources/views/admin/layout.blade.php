@@ -12,7 +12,8 @@
     <style>
         html {
             position: relative;
-            min-height: 100%;
+
+
         }
         body{
             background-image: url("fon.jpg");
@@ -37,7 +38,7 @@
         <nav class="navbar navbar-light " style="background-color: #e3e3e3;">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a  href="{{route("categories.index")}}" class="btn btn-outline-primary btn-lg btn-group" >Категории</a>
-                <a  href="#" class="btn btn-outline-primary btn-lg btn-group">Посты</a>
+                <a  href="{{route("posts.index")}}" class="btn btn-outline-primary btn-lg btn-group">Посты</a>
                 <a  href="#" class="btn btn-outline-primary btn-lg btn-group">Найти пост</a>
             </div>
             <button type="button" class="btn btn-outline-secondary btn-lg">ВЫХОД</button>
@@ -47,14 +48,11 @@
                 {{Session::get("message")}}
             </div>
         @endif
-        <h1 class="mb-3 my-4 mx-3">@yield("title")</h1>
+        <h1 class="mb-3 my-4">@yield("title")</h1>
         @yield("content")
 
         @section("footer")
-            <footer>
-                &copy; Наша супер админ панель
 
-            </footer>
         @show
     </div>
     @stack("scripts")
