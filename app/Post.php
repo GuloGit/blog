@@ -17,6 +17,7 @@ class Post extends Model
             "text"=>"required",
             "description"=>"required|max:500",
             "url"=>"required|max:30",
+            "status"=>"required|boolean" ,
             "image" => "required|mimes:jpeg,png"
         ];
 

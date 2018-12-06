@@ -25,7 +25,9 @@ class CreatePostsTable extends Migration
             $table->string("image");
             $table->foreign('category_name')
                 ->references('name')->on('categories')
-                ->onDelete('cascade');
+                ->onDelete('restrict')
+                ->onUpdate('cascade')
+             ;
         });
     }
 

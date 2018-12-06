@@ -31,7 +31,7 @@
                 <td>{{$post->title}}</td>
                 <td>{{$post->description}}</td>
                 <td>
-                    @if($post->status==="on")
+                    @if($post->status==="1")
                         {{"Опубликован"}}
                     @else
                         {{"Черновик"}}

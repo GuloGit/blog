@@ -88,6 +88,7 @@ class Posts extends Controller
      */
     public function update(Request $request, Post $post)
     {
+      // dd($request);
         $request->validate(Post::rules());
         $post->fill($request->all());
 
@@ -113,7 +114,7 @@ class Posts extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        Session()->flash("message", "Пост успешно удалена");
+        Session()->flash("message", "Пост успешно удален");
         Session()->flash("message-type", "danger");
         return redirect(route("posts.index"));
     }

@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label for="category">Выберите категорию</label>
-            <select class="form-control" id="category" name="category_name">
+            <select class="form-control custom-select-lg mb-3 " id="category" name="category_name">
                 @foreach($categories as $category)
                     <option>{{$category->name}}</option>
                     @endforeach
@@ -68,11 +68,16 @@
             </div>
         @endisset
 
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="status" name="status">
-            <label class="form-check-label" for="status" >Опубликовать</label>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline1" name="status" class="custom-control-input" value="0" checked>
+            <label class="custom-control-label" for="customRadioInline1">Черновик</label>
         </div>
 
-            <button class="btn btn-primary" type="submit">Сохранить</button>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline2" name="status" class="custom-control-input" value="1">
+            <label class="custom-control-label" for="customRadioInline2">Опубликовать</label>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Сохранить</button>
     </form>
 @endsection
