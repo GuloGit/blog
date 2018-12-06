@@ -41,6 +41,7 @@ class Posts extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request);
         $request->validate(Post::rules());
         $data = $request->all();
         $data["image"]=$request->image->store("public/images");
@@ -88,7 +89,7 @@ class Posts extends Controller
      */
     public function update(Request $request, Post $post)
     {
-      // dd($request);
+       //dd($request);
         $request->validate(Post::rules());
         $post->fill($request->all());
 

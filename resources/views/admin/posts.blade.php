@@ -23,6 +23,7 @@
             <th class="h3">Заголовок</th>
             <th class="h3">Краткое описание</th>
             <th class="h3">Статус</th>
+            <th class="h3">Категория</th>
             <th></th>
         </tr>
 
@@ -37,6 +38,7 @@
                         {{"Черновик"}}
                     @endif
                 </td>
+                <td>{{$post->category_id}}</td>
                 <td style="text-align:right">
                     <a href="{{route("posts.edit", $post->id)}}" class="btn btn-outline-primary">Изменить</a>
                     <form class="d-inline-block" action="{{route("posts.destroy", $post->id)}}" method="post">

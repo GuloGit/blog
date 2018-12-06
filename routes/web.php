@@ -16,7 +16,8 @@ Route::group(["middleware"=>"auth"], function(){
     Route::get('/admin',"Admin\AdminController@index")->name("admin");
     Route::resource("admin/categories", "Admin\\Categories");
     Route::resource("admin/posts", "Admin\\Posts");
-    Route::get("admin/search", 'Admin\Search@index')->name('search');
+    Route::get("admin/search", 'Admin\Search@index')->name('SearchForm');
+    Route::post("admin/search", 'Admin\Search@result')->name('search');
     });
 
 Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');

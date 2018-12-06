@@ -37,7 +37,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a  href="{{route("categories.index")}}" class="btn btn-outline-primary btn-lg btn-group" >Категории</a>
                 <a  href="{{route("posts.index")}}" class="btn btn-outline-primary btn-lg btn-group">Посты</a>
-                <a  href="{{route("search")}}" class="btn btn-outline-primary btn-lg btn-group">Найти пост</a>
+                <a  href="{{route("SearchForm")}}" class="btn btn-outline-primary btn-lg btn-group">Найти пост</a>
             </div>
             <button type="button" class="btn btn-outline-secondary btn-lg">ВЫХОД</button>
         </nav>

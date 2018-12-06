@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category_name');
+            $table->unsignedInteger('category_id');
             $table->timestamps();
             $table->string("title");
             $table->string('status')->nullable();
@@ -23,8 +23,8 @@ class CreatePostsTable extends Migration
             $table->text("text");
             $table->string("url")->unique();
             $table->string("image");
-            $table->foreign('category_name')
-                ->references('name')->on('categories')
+            $table->foreign('category_id')
+                ->references('id')->on('categories')
                 ->onDelete('restrict')
                 ->onUpdate('cascade')
              ;
