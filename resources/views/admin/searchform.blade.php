@@ -20,7 +20,7 @@
         <div class="form-group row">
             <label for="title" class="col-sm-2 col-form-label">Название</label>
             <div class="col-sm-10">
-                <input id="title" name="title" type="text"  class="form-control" name="name">
+                <input id="title" name="title" type="text"  class="form-control" name="title">
             </div>
         </div>
         <fieldset class="form-group">

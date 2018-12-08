@@ -12,12 +12,13 @@
 @endsection
 @section("content")
     <a class="btn btn-success mb-4 mx-3" href="{{ route("posts.create") }}">Создать пост</a>
-    <table class="table table-bordered table-hover table-striped mx-3">
+    <table class="table table-bordered table-hover table-striped mx-3 ">
         <colgroup>
             <col width="200">
             <col>
             <col width="50">
-            <col>
+            <col >
+            <col width="250">
         </colgroup>
         <tr>
             <th class="h3">Заголовок</th>
@@ -50,4 +51,5 @@
             </tr>
         @endforeach
     </table>
+   <div style="width: 200px; margin: 0 auto">{{$posts->links()}}</div>
 @endsection

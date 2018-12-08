@@ -6,6 +6,7 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class Posts extends Controller
 {
@@ -15,9 +16,11 @@ class Posts extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
+        $posts = DB::table('posts')->Paginate(2);
         return view("admin.posts", [
-            "posts" => Post::all()
+            "posts" => $posts
         ]);
     }
 

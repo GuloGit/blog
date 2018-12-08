@@ -27,6 +27,14 @@
             width: auto;
             height: 40px;
             }
+        .page-link {
+            background: transparent;
+            margin-top: 10px;
+        }
+        .page-item.disabled .page-link{
+            background: #cad2d3;
+        }
+
     </style>
     @show
 
