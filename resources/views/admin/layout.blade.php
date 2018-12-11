@@ -36,7 +36,6 @@
         }
 
     </style>
-    @show
 
 </head>
 <body>
@@ -46,15 +45,16 @@
                 <a  href="{{route("categories.index")}}" class="btn btn-outline-primary btn-lg btn-group" >Категории</a>
                 <a  href="{{route("posts.index")}}" class="btn btn-outline-primary btn-lg btn-group">Посты</a>
                 <a  href="{{route("SearchForm")}}" class="btn btn-outline-primary btn-lg btn-group">Найти пост</a>
+                <a  href="{{route("users.index")}}" class="btn btn-outline-primary btn-lg btn-group">Администраторы</a>
             </div>
-            <button type="button" class="btn btn-outline-secondary btn-lg">ВЫХОД</button>
+            <a class="btn btn-outline-secondary btn-lg" href="{{route("logout")}}">ВЫХОД</a>
         </nav>
         @if(Session::has("message"))
             <div class="alert alert-{{Session::get("message-type")}} mx-3" role="alert">
                 {{Session::get("message")}}
             </div>
         @endif
-        <h1 class="mb-3 my-4">@yield("title")</h1>
+        <h1 class="mb-3 my-4 mx-3">@yield("title")</h1>
         @yield("content")
 
         @section("footer")

@@ -105,9 +105,17 @@ class Categories extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        Session()->flash("message", "Категория успешно удалена");
-        Session()->flash("message-type", "danger");
+
+        //$category_post=Category::find($category->id)->posts;
+        if( $category->posts->first()){
+            Session()->flash("message", "Нельзя удалить категорию,  в которой есть посты");
+            Session()->flash("message-type", "danger");
+        } else{
+            $category->delete();
+            Session()->flash("message", "Категория успешно удалена");
+            Session()->flash("message-type", "danger");
+        }
+
         return redirect(route("categories.index"));
     }
 }
