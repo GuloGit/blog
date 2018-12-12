@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Users extends Controller
 {
@@ -16,8 +17,6 @@ class Users extends Controller
      */
     public function index()
     {
-        //  dd($request->user());
-        //$user_id=Auth::id();
         return view("admin.adminlist",[
             "users"=> User::all(),
             "user_id"=>Auth::id()
@@ -42,14 +41,15 @@ class Users extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate(User::rules());
+        $request->validate(User::rules());
         $data = $request->all();
-        //User::rules($data);
-
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
         $request->session()->flash("message", "Пост успешно сохранен");
         $request->session()->flash("message-type", "success");
-
-        $user = User::create($data);
 
         return redirect(route("users.index"));
     }
@@ -60,17 +60,7 @@ class Users extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
         return view("admin.register", [
@@ -88,9 +78,9 @@ class Users extends Controller
     public function update(Request $request, User $user)
     {
         $user->delete();
-        //dd($request);
         $request->validate(User::rules());
         $user->fill($request->all());
+        $user->password=Hash::make($user->password);
         $user->save();
 
         $request->session()->flash("message", "Изменения успешно сохранены");

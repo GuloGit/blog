@@ -16,9 +16,13 @@ class Posts extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
-        $posts = DB::table('posts')->Paginate(2);
+       /*Так не возможно обращение к category во view, нужно создавать через модель
+        * $posts = DB::table('posts')->Paginate(2);
+        * Так тоже работает но странно, что просто
+            $posts =Post::Paginate(2);
+       */
+        $posts =Post::with("category")->Paginate(2);
         return view("admin.posts", [
             "posts" => $posts
         ]);
@@ -44,7 +48,6 @@ class Posts extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);
         $request->validate(Post::rules());
         $data = $request->all();
         $data["image"]=$request->image->store("public/images");
@@ -76,9 +79,11 @@ class Posts extends Controller
      */
     public function edit(Post $post)
     {
+        $category_name=Category::where('id', $post->category_id)->get()->first()->name;
         return view("admin.postsform", [
             "post" => $post,
-            "categories" => Category::all()
+            "categories" => Category::all(),
+            "category_name"=>$category_name
         ]);
 
     }
@@ -92,7 +97,6 @@ class Posts extends Controller
      */
     public function update(Request $request, Post $post)
     {
-       //dd($request);
         $request->validate(Post::rules());
         $post->fill($request->all());
 

@@ -39,7 +39,7 @@
                         {{"Черновик"}}
                     @endif
                 </td>
-                <td>{{$post->category_id}}</td>
+                <td>{{$post->category->name}}</td>
                 <td style="text-align:right">
                     <a href="{{route("posts.edit", $post->id)}}" class="btn btn-outline-primary">Изменить</a>
                     <form class="d-inline-block" action="{{route("posts.destroy", $post->id)}}" method="post">
@@ -51,5 +51,7 @@
             </tr>
         @endforeach
     </table>
+    @if(!isset($paginate))
    <div style="width: 200px; margin: 0 auto">{{$posts->links()}}</div>
+    @endif
 @endsection

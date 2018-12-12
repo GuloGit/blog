@@ -16,8 +16,6 @@ class Categories extends Controller
      */
     public function index()
     {
-        //  $categories=Category::all();
-        // dd($categories);
         return view("admin.category", [
             "categories" => Category::all()
         ]);
@@ -71,7 +69,6 @@ class Categories extends Controller
      */
     public function edit(Category $category)
     {
-
         return view("admin.categoriesform", [
             "category" => $category
         ]);
@@ -105,7 +102,6 @@ class Categories extends Controller
      */
     public function destroy(Category $category)
     {
-
         //$category_post=Category::find($category->id)->posts;
         if( $category->posts->first()){
             Session()->flash("message", "Нельзя удалить категорию,  в которой есть посты");

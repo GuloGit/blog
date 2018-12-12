@@ -37,7 +37,8 @@
             <label for="category">Выберите категорию</label>
             <select class="form-control custom-select-lg mb-3 " id="category" name="category_id">
                 @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}" {{$category->name===$category_name?"selected":""}}>
+                        {{$category->name}}</option>
                     @endforeach
             </select>
         </div>

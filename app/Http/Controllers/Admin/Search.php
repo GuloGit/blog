@@ -6,6 +6,9 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class Search extends Controller
 {
@@ -18,22 +21,24 @@ class Search extends Controller
 
     public function result(Request $request)
     {
-
         $posts=collect([]);
         $category=$request->category_id;
         $status=$request->status;
         $title=$request->title;
 
+
         if (isset($category) && is_null($status) && is_null($title)){
              $posts= Post::where("category_id", $category)->get();
-         }
+             dd($posts);
+             }
 
         if (isset($status) && is_null($category) && is_null($title)){
-             $posts= Post::where("status", $status)->get();
+             $posts= Post::with("category")->where("status", $status)->get();
              }
 
         if (isset($title)&& is_null($category) && is_null($status)){
-            foreach (Post::all() as $post){
+            $items=Post::with("category")->get();
+            foreach ($items as $post){
                if(str_contains($post->title, $title)){
                     $posts->push($post);
                };
@@ -71,8 +76,18 @@ class Search extends Controller
             };
         }
 
+        if ($posts->first()===null){
+            Session()->flash("message", "Нет постов, отвечающих критериям поиска");
+            Session()->flash("message-type", "primary");
+        }
+
+        //пока в результатах поиска навигации нет, но скоро будет
+        $paginate=true;
+
         return view("admin.posts",[
-            "posts" => $posts
+            "posts" => $posts,
+            "paginate"=>$paginate
+
         ]);
     }
 }

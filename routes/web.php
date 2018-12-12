@@ -13,19 +13,13 @@
 
 
 Route::group(["middleware"=>"auth"], function(){
-    Route::get('/admin',"Admin\\AdminController@index")->name("admin");
-    Route::get('/admin/list',"Admin\\AdminController@list")->name("AdminList");
-    Route::post('/admin/del/{id}',"Admin\\AdminController@del")->name("AdminDel");
+    Route::get('/admin',"Admin\\Categories@index")->name("admin");
     Route::resource("admin/categories", "Admin\\Categories");
     Route::resource("admin/posts", "Admin\\Posts");
-    Route::resource("admin/users", "Admin\\Users");
+    Route::resource("admin/users", "Admin\\Users")->except(["show"]);
     Route::get("admin/search", 'Admin\Search@index')->name('SearchForm');
     Route::post("admin/search", 'Admin\Search@result')->name('search');
-
-    //Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-   // Route::post('admin/register', 'Auth\RegisterController@register');
     });
-
 
 
 // Authentication Routes...
