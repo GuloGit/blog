@@ -29,7 +29,6 @@ class Search extends Controller
 
         if (isset($category) && is_null($status) && is_null($title)){
              $posts= Post::where("category_id", $category)->get();
-             dd($posts);
              }
 
         if (isset($status) && is_null($category) && is_null($title)){
