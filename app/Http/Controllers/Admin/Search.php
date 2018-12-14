@@ -41,43 +41,40 @@ class Search extends Controller
         //но потом заметила, что и с where, все работает, и with не обязателен
         //я поняла из твоих ответов, что поиск внутри текста лучше по другому сделать, да и надо как то результат подкрасить
         if (isset($title)&& is_null($category) && is_null($status)){
-            $items=Post::with("category")->get();
-            foreach ($items as $post){
+            $posts=Post::with("category")->where('title', 'like', '%'.$title.'%')->get();
+            /*foreach ($items as $post){
                if(str_contains($post->title, $title)){
                     $posts->push($post);
-               };
+                };
+             }
+            */
             }
-        }
-//здесь поиск по статусу и категории без названия поста(оно не заполнено)
+       //здесь поиск по статусу и категории без названия поста(оно не заполнено)
         if (isset($category)&& isset($status) && is_null($title)){
-            $posts= Post::where("category_id", $category)->where("status", $status)->get();
+            $posts= Post::where("category_id", $category)
+                ->where("status", $status)
+                ->get();
          }
 //здесь поиск по категории и названию, без статуса, то есть статус не выбран
         if (isset($category)&& isset($title)&& is_null($status)){
-            $items= Post::where("category_id", $category)->get();
-            foreach ($items as $post){
-                if(str_contains($post->title, $title)){
-                    $posts->push($post);
-                }
-            };
-        }
+            $posts= Post::where("category_id", $category)
+                ->where('title', 'like', '%'.$title.'%')
+                ->get();
+            }
 //это условие сработает, если выбраны статус и название, категорий не указана
         if (isset($status)&& isset($title)&& is_null($category)){
-            $items= Post::where("status", $status)->get();
-            foreach ($items as $post){
-                if(str_contains($post->title, $title)){
-                    $posts->push($post);
-                }
-            };
+            $posts= Post::where("status", $status)
+                ->where('title', 'like', '%'.$title.'%')
+                ->get();
+
         }
 //А это условие если выбраны все параметры
         if (isset($status) && isset($title)&& isset($category)){
-            $items=Post::where("category_id", $category)->where("status", $status)->get();
-            foreach ($items as $post){
-                if(str_contains($post->title, $title)){
-                    $posts->push($post);
-                }
-            };
+            $posts=Post::where("category_id", $category)
+                ->where("status", $status)
+                ->where('title', 'like', '%'.$title.'%')
+                ->get();
+
         }
 /* если ни одно из условий не сработает или ничего не найдено, то collection, то есть перемення $posts пустой,
  и должно выводиться сообщение, что ничего не найдено
@@ -107,7 +104,8 @@ Collection {#566 ▼
 
         return view("admin.posts",[
             "posts" => $posts,
-            "paginate"=>$paginate
+            "paginate"=>$paginate,
+            "title"=>$title
 
         ]);
     }

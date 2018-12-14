@@ -84,7 +84,7 @@ class Categories extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate(Category::rules());
+        $request->validate(Category::rules($category));
         $category->fill($request->all());
         $category->save();
 

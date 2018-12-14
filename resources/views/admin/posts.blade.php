@@ -30,7 +30,14 @@
 
         @foreach($posts as $post)
             <tr>
-                <td>{{$post->title}}</td>
+                <td>
+                @if(isset($title))
+                    {{str_replace_array($title, ['<b/>'.$title.'</b>'], $post->title)}}
+                @else
+                    {{$post->title}}
+                @endif
+
+                </td>
                 <td>{{$post->description}}</td>
                 <td>
                     @if($post->status==="1")

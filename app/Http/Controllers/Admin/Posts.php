@@ -97,7 +97,7 @@ class Posts extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate(Post::rules());
+        $request->validate(Post::rules($post));
         $post->fill($request->all());
 
         if($request->has("image")){

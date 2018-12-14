@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
 
 class Category extends Model
 {
@@ -10,12 +11,12 @@ class Category extends Model
 
     protected $guarded= [];
 
-    public static function rules()
+    public static function rules($category)
     {
         return[
             "name"=>"required|max:255",
             "description"=>"required|max:500",
-            "url"=>"required"
+            "url"=>['required', 'max:30', Rule::unique('categories')->ignore($category->id)]
          ];
 
     }

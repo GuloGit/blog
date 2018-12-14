@@ -77,11 +77,11 @@ class Users extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->delete();
-        $request->validate(User::rules());
+        //$user->delete();
+        $request->validate(User::rules($user));
         $user->fill($request->all());
         $user->password=Hash::make($user->password);
-        $user->save();
+        $user->update();
 
         $request->session()->flash("message", "Изменения успешно сохранены");
         $request->session()->flash("message-type", "success");
