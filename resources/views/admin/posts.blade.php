@@ -32,7 +32,7 @@
             <tr>
                 <td>
                 @if(isset($title))
-                    {{str_replace_array($title, ['<b/>'.$title.'</b>'], $post->title)}}
+                    {!! str_replace($title, "<span style='background:#D5FFBC; '>".$title."</span>", $post->title) !!}
                 @else
                     {{$post->title}}
                 @endif

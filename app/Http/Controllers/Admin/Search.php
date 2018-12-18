@@ -102,11 +102,11 @@ Collection {#566 ▼
         */
         $paginate=true;
 
+
         return view("admin.posts",[
             "posts" => $posts,
             "paginate"=>$paginate,
-            "title"=>$title
-
+            "title"=>$title,
         ]);
     }
 }
