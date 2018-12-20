@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        return view('home', [
+            "categories" => Category::all()
+        ]);
+    }
+
+    public function category($url)
+    {
+       echo "ура!";
     }
 }

@@ -1,12 +1,37 @@
-*, *::before, *::after {
+*, *::after, *::before {
   box-sizing: border-box;
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 
-body{
-  font-size: 1.6rem;
-  font-weight: bold;
+body {
+  margin: 0;
+  font: @font-size/1.6 'Open Sans', sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 96rem;
+}
+
+.hidden {
+  display: none;
+}
+.btn {
+  .ib(middle);
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  line-height: 1;
+  text-align: center;
+
+    &--stacked {
+      display: block;
+      width: 100%;
+    }
 }

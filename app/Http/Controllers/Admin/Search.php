@@ -41,7 +41,9 @@ class Search extends Controller
         //но потом заметила, что и с where, все работает, и with не обязателен
         //я поняла из твоих ответов, что поиск внутри текста лучше по другому сделать, да и надо как то результат подкрасить
         if (isset($title)&& is_null($category) && is_null($status)){
-            $posts=Post::with("category")->where('title', 'like', '%'.$title.'%')->get();
+            $posts=Post::with("category")
+                ->where('title', 'like', '%'.$title.'%')
+                ->get();
             /*foreach ($items as $post){
                if(str_contains($post->title, $title)){
                     $posts->push($post);
