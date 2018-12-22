@@ -39,6 +39,7 @@ class Categories extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate(Category::rules());
         $data = $request->all();
         $request->session()->flash("message", "Категория успешно добавлена");

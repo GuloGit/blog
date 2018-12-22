@@ -11,13 +11,24 @@ class Category extends Model
 
     protected $guarded= [];
 
-    public static function rules($category)
+    public static function rules($category=null)
     {
-        return[
-            "name"=>"required|max:255",
-            "description"=>"required|max:500",
-            "url"=>['required', 'max:30', Rule::unique('categories')->ignore($category->id)]
-         ];
+        if($category){
+            return[
+                "name"=>"required|max:255",
+                "description"=>"required|max:500",
+                "url"=>['required', 'max:30', Rule::unique('categories')->ignore($category->id)]
+            ];
+
+        } else{
+            return[
+                "name"=>"required|max:255",
+                "description"=>"required|max:500",
+                "url"=>'required', 'max:30'
+            ];
+
+        }
+
 
     }
     public function posts()

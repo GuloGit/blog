@@ -1,0 +1,49 @@
+.post{
+  background-color: @white;
+  overflow: hidden;
+  &:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+  }
+
+    &__image{
+
+    }
+    &__img{
+      .img-block();
+      height: 100%;
+    }
+
+    &__content{
+      color: @gray-middle-light;
+      padding: 2rem 1.5rem;
+    }
+
+    &__title{
+      font-size: 1.2rem;
+      color: @gray-dark;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    &__description{
+      font-size: 1.1rem;
+      color: @gray-middle-light;
+      margin-top: 0.5rem;
+      max-height: 10rem;
+      overflow: hidden;
+      }
+
+    &__category {
+      font-size: 1rem;
+      font-weight: bold;
+      color: @red;
+      font-style: italic;
+    }
+    &__date{
+      font-size: 1rem;
+      color: @gray-middle-light;
+      font-style: italic;
+     }
+
+}

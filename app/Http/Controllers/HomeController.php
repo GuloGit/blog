@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,9 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories=Category::with('posts')->get();
+
+        foreach ($categories as $category){
+           $category->PostCount=$category->posts()->count();
+        }
+        $posts= Post::with("category")->get();
 
         return view('home', [
-            "categories" => Category::all()
+            "categories" => $categories,
+            "posts"=>$posts
         ]);
     }
 

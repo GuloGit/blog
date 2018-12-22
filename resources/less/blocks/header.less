@@ -54,13 +54,23 @@
   &__button{
     height: 100%;
     width: 20%;
-
-    background: url(../img/search.png) no-repeat center / cover;
     align-self: center;
   }
   &__btn{
+    background: url(../img/search.png) no-repeat center / cover;
     padding: 1.95rem 1.5rem;
-}
+
+      &:hover {
+        filter: invert(100%);
+      }
+      &:active {
+      outline: 1px solid @gray-dark;
+      }
+
+      &:focus {
+      outline: 1px solid @gray-dark;
+      }
+  }
 
   &__descriptor {
     margin-left: 3rem;
