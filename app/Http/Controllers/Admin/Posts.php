@@ -36,7 +36,8 @@ class Posts extends Controller
     public function create()
     {
         Return view("admin.postsform", [
-            "categories" => Category::all()
+            "categories" => Category::all(),
+            "category_name"=>null
         ]);
     }
 

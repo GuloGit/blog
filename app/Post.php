@@ -11,17 +11,28 @@ class Post extends Model
 
     protected $guarded= [];
 
-    public static function rules($post)
+    public static function rules($post=null)
     {
-        return[
-            "title"=>"required|max:255",
-            "text"=>"required",
-            "description"=>"required|max:500",
-            "url"=>['required', 'max:30', Rule::unique('posts')->ignore($post->id)],
-            "status"=>"required|boolean" ,
-            "image" => "required|mimes:jpeg,png"
-        ];
 
+        if($post){
+            return[
+                "title"=>"required|max:255",
+                "text"=>"required",
+                "description"=>"required|max:500",
+                "url"=>['required', 'max:30', Rule::unique('posts')->ignore($post->id)],
+                "status"=>"required|boolean" ,
+                "image" => "required|mimes:jpeg,png"
+            ];
+        } else{
+            return[
+                "title"=>"required|max:255",
+                "text"=>"required",
+                "description"=>"required|max:500",
+                "url"=>'required', 'max:30',
+                "status"=>"required|boolean" ,
+                "image" => "required|mimes:jpeg,png"
+            ];
+        }
     }
     public function category()
     {

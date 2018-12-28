@@ -1,0 +1,15 @@
+.page{
+  &-link{
+    font-size: 1.2rem;
+    color: @green;
+    &:hover{
+      color: @white;
+      background-color: @green;
+      border-color: @green;
+    }
+  }
+}
+.page-item.active .page-link{
+   background-color: @green;
+   border-color: @green;
+}

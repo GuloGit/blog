@@ -9,6 +9,37 @@
     list-style: none;
     padding: 1rem 0;
     border-bottom: 1px solid @gray-light;
+
+    &:hover{
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+      &>a{
+        color: @gray-middle;
+      }
+    }
+  }
+
+  &__categories{
+    color: @gray;
+    padding: 0 0.75rem 1.1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-bottom: 1px solid @gray-light;
+    text-align: left;
+    &:hover{
+      color: @gray;
+      border-bottom: 1px solid @gray;
+    }
+    &:active {
+      outline: none;
+      filter: grayscale(100%);
+    }
+
+    &:focus {
+      outline: none;
+      filter: grayscale(100%);
+      box-shadow: none;
+    }
   }
 
   &__btn {
@@ -17,7 +48,7 @@
     justify-content: space-between;
 
     &:hover {
-      color: @red;
+      color: @gray-middle;
     }
 
     &:active {
@@ -28,6 +59,7 @@
     &:focus {
       outline: none;
       filter: grayscale(100%);
+      box-shadow: none;
     }
   }
 }

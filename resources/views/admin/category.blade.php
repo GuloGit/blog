@@ -16,7 +16,7 @@
         <colgroup>
             <col width="200">
             <col>
-            <col>
+            <col width="250">
         </colgroup>
         <tr>
             <th class="h3">Название</th>

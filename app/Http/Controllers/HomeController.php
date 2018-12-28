@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class HomeController extends Controller
 {
@@ -28,9 +31,9 @@ class HomeController extends Controller
         $categories=Category::with('posts')->get();
 
         foreach ($categories as $category){
-           $category->PostCount=$category->posts()->count();
+           $category->PostCount=$category->posts()->where('status', '1')->count();
         }
-        $posts= Post::with("category")->get();
+        $posts= Post::with("category")->where("status", "1")->Paginate(3);
 
         return view('home', [
             "categories" => $categories,
@@ -38,8 +41,29 @@ class HomeController extends Controller
         ]);
     }
 
-    public function category($url)
+    public function showCategory($url)
     {
-       echo "ура!";
+        $categories=Category::with('posts')->get();
+        $category=Category::with('posts')->where('url', $url)->get();
+        //dd($category->first()->id);
+        $category_id=$category->first()->id;
+
+        foreach ($categories as $category){
+            $category->PostCount=$category->posts()->where('status', '1')->count();
+        }
+        $posts= Post::with("category")
+            ->where('category_id', $category_id)
+            ->where("status", "1")
+            ->simplePaginate(3);
+
+        return view('home', [
+            "categories" => $categories,
+            "posts"=>$posts
+        ]);
+    }
+
+    public function showPost($url)
+    {
+        echo "ура!";
     }
 }

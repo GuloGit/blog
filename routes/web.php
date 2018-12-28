@@ -34,4 +34,5 @@ Route::get('admin/password/reset/{token}', 'Auth\ResetPasswordController@showRes
 Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/showCategory/{url}', 'HomeController@category')->name('show-category');
+Route::get('/category/{url}', 'HomeController@showCategory')->name('show-category');
+Route::get('/post/{url}', 'HomeController@showPost')->name('show-post');
