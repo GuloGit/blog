@@ -5,9 +5,9 @@
             @foreach($posts as $post)
                 @if($post->status==="1")
                     <div class="post  content__post">
-                        <div class="post__imgage">
-                            <img class="post__img" src="{{Storage::url($post->image)}}" width="190"/>
+                        <div class="post__image"  style="background:url({{Storage::url($post->image)}}) center/cover">
                         </div>
+
                         <div class="post__content">
                             <div class="post__title">{{$post->title}}</div>
                             <span class="post__category">{{$post->category->name}}</span>

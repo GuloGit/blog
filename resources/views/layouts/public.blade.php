@@ -8,7 +8,32 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(function(){
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(".btn__rating--right").click(function () {
+                var id = $(".post__rating").data("id");
 
+                $.ajax({
+                url: "/rating/" + id,
+                type:"post",
+                dataType:"json",
+                success: function (response) {
+
+                $(".post__like").text(response.total);
+
+                }
+
+                })
+            });
+
+    })
+    </script>
 </head>
 <body>
     <div class="container">

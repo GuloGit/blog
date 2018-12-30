@@ -49,11 +49,11 @@
 
         <div class="form-group">
             <label for="decription">Краткое описание:</label>
-            <textarea id="description" name="description" type="text" class="form-control" >{{old("text",isset($post)?$post->text:"")}}</textarea>
+            <textarea id="description" name="description" type="text" class="form-control" >{{old("description",isset($post)?$post->text:"")}}</textarea>
         </div>
         <div class="form-group">
             <label for="text">Текст:</label>
-            <textarea id="description" name="text" type="text" class="form-control" >{{old("description",isset($post)?$post->description:"")}}</textarea>
+            <textarea id="description" name="text" type="text" class="form-control" >{{old("text",isset($post)?$post->description:"")}}</textarea>
         </div>
 
         <div class="form-group">

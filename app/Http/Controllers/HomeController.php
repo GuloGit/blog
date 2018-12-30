@@ -64,6 +64,17 @@ class HomeController extends Controller
 
     public function showPost($url)
     {
-        echo "ура!";
+        $categories=Category::with('posts')->get();
+
+        foreach ($categories as $category){
+            $category->PostCount=$category->posts()->where('status', '1')->count();
+        }
+        $post= Post::with("category")->where('url', $url)->first();
+        //dd($post);
+
+        return view('post', [
+            "categories" => $categories,
+            "post"=>$post
+        ]);
     }
 }

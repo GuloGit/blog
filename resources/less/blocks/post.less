@@ -1,12 +1,25 @@
 .post{
   background-color: @white;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
   &:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  &--single{
+    width: 90%;
+    margin: 2rem auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
 
   &__image{
-
+      height:20rem;
+      width: 100%;
+    &--single{
+     height: auto;
+    }
    }
   &__img{
       .img-block();
@@ -21,8 +34,11 @@
   &__title{
       font-size: 1.2rem;
       color: @gray-dark;
-      margin-bottom: 0.5rem;
+
       font-weight: bold;
+      &--single{
+        font-size: 1.8rem;
+      }
   }
 
   &__description{
@@ -40,6 +56,17 @@
         bottom: 0; left: 0;
         background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(248,249,250,.5) 75%);
       }
+  }
+  &__text{
+    font-size: 1.2rem;
+  }
+  &__feedback{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem;
+    background-color: #fbfbfb;
+    border: 2px solid @gray-light;
+    border-radius: 4px;
   }
 
   &__category {
@@ -61,5 +88,11 @@
        background:darken(@green, 15%);
        color:@white;
      }
+  }
+  &__like{
+    color:@green;
+  }
+  &__discus{
+    padding: 2rem 1.5rem;
   }
 }
