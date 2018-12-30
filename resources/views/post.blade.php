@@ -9,9 +9,21 @@
                  <div class="post__content">
                           <div class="post__title post__title--single">{{$post->title}}</div>
                      <div class="post__feedback">
-                        <div class="post__rating" data-id="{{$post->title}}">
-                            <span  class="post__dislike">0</span> <button id="dislike" class="btn btn__rating btn__rating--left"></button>
-                            <span  class="post__like">0</span><button id="like" class="btn btn__rating btn__rating--right"></button>
+                        <div class="post__rating" data-id="{{$post->id}}">
+                            <span  class="post__dislike">
+                                @if(!$post->dislike)
+                                    0
+                                @else {{$post->dislike}}
+                                @endif
+                            </span> <button id="dislike" class="btn btn__rating btn__rating--left"></button>
+                            <span  class="post__like">
+                                @if(!$post->like)
+                                    0
+                                @else {{$post->like}}
+                                @endif
+
+                            </span>
+                            <button id="like" class="btn btn__rating btn__rating--right"></button>
                         </div>
 
                             <div class="post__share">

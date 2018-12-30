@@ -11,27 +11,46 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
     $(function(){
+
         $.ajaxSetup({
             headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $(".btn__rating--right").click(function () {
                 var id = $(".post__rating").data("id");
-
+                console.log(id);
                 $.ajax({
-                url: "/rating/" + id,
-                type:"post",
+                url: "/ratingLike" ,
+                type:"get",
+                    data: {id:id} ,
                 dataType:"json",
                 success: function (response) {
 
-                $(".post__like").text(response.total);
+                $(".post__like").text(response.like);
+                $(".post__dislike").text(response.dislike);
 
                 }
 
                 })
             });
+        $(".btn__rating--left").click(function () {
+            var id = $(".post__rating").data("id");
+            console.log(id);
+            $.ajax({
+                url: "/ratingDislike" ,
+                type:"get",
+                data: {id:id} ,
+                dataType:"json",
+                success: function (response) {
 
+                    $(".post__like").text(response.like);
+                    $(".post__dislike").text(response.dislike);
+
+                }
+
+            })
+        });
     })
     </script>
 </head>

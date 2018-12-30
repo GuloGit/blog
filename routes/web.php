@@ -36,4 +36,6 @@ Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset')->name(
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{url}', 'HomeController@showCategory')->name('show-category');
 Route::get('/post/{url}', 'HomeController@showPost')->name('show-post');
-Route::get('/rating/{id}', 'HomeController@rating')->name('rating');
+Route::get('/ratingLike', 'HomeController@ratingLike')->name('ratingLike');
+Route::get('/ratingDislike', 'HomeController@ratingDislike')->name('ratingDislike');
+
