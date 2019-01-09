@@ -39,6 +39,40 @@ class HomeController extends Controller
 
         return view('home', [
             "categories" => $categories,
+            "posts"=>$posts,
+            "paginate"=>true
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $posts=collect([]);
+        $search=$request->search;
+
+        $items= Post::where("status", "1")->get();
+
+
+
+        if($search){
+            foreach ($items as $item){
+                $description=$item->description;
+                $title=$item->title;
+                $text=$item->text;
+            //если есть совпадения в название, описание или тексте, то пост добавляется в массив $posts
+                if(stristr($title,"$search")||stristr($description,"$search"||stristr($text,"$search"))){
+                    $posts->push($item);
+                }
+            }
+        }
+
+        $categories=Category::with('posts')->get();
+
+        foreach ($categories as $category){
+            $category->PostCount=$category->posts()->where('status', '1')->count();
+        }
+
+        return view('home', [
+            "categories" => $categories,
             "posts"=>$posts
         ]);
     }
@@ -47,7 +81,6 @@ class HomeController extends Controller
     {
         $categories=Category::with('posts')->get();
         $category=Category::with('posts')->where('url', $url)->get();
-        //dd($category->first()->id);
         $category_id=$category->first()->id;
 
         foreach ($categories as $category){

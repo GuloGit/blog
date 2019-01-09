@@ -63,11 +63,11 @@
                 </div>
                 <div class="header__label">Поиск постов</div>
 
-                <form class="header__form" action="#" method="post">
+                <form class="header__form" action="{{route("search")}}" method="post">
                     @csrf
                     <div class="header__search">
                         <label for="search" class="hidden"></label>
-                        <input class="header__input " placeholder="введите поисковое слово..." id="search" type="text">
+                        <input name="search" class="header__input " placeholder="введите поисковое слово..." id="search" type="text">
                     </div>
                     <div class="header__button">
                         <button class="btn header__btn btn--stacked"></button>
@@ -91,6 +91,7 @@
                 @endforeach
             </div>
             @yield("content")
+
         </div>
     </div><!-- container-->
 </body>

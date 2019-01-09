@@ -1,6 +1,7 @@
 @extends("layouts.public")
 @section("content")
-    <div class="content">
+     <div class="content">
+
         <div class="content__posts">
             @foreach($posts as $post)
                 @if($post->status==="1")
@@ -19,6 +20,8 @@
                 @endif
             @endforeach
         </div>
-        <div class="content__pagination">{{$posts->links()}}</div>
+        @if(isset($paginate))
+            <div class="content__pagination">{{$posts->links()}}</div>
+        @endif
     </div>
 @endsection
