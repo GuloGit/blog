@@ -5,6 +5,19 @@
   color: @gray-middle;
   padding: 2rem 1.5rem;
 
+  @media screen and (max-width: 768px){
+    width: 30%;
+  }
+  @media screen and (max-width: 650px){
+    width: 33%;
+  }
+  @media screen and (max-width: 620px){
+    width: 35%;
+  }
+  @media screen and (max-width: 500px){
+    font-size: 1rem;
+  }
+
   &__item {
     list-style: none;
     padding: 1rem 0;
@@ -23,9 +36,19 @@
     color: @gray;
     padding: 0 0.75rem 1.1rem;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border-bottom: 1px solid @gray-light;
     text-align: left;
+
+    @media screen and (max-width: 700px){
+      font-size: 1.4rem;
+    }
+    @media screen and (max-width: 620px){
+      font-size: 1.2rem;
+    }
+    @media screen and (max-width: 500px){
+      font-size: 1.1rem;
+    }
     &:hover{
       color: @gray;
       border-bottom: 1px solid @gray;
@@ -60,6 +83,18 @@
       outline: none;
       filter: grayscale(100%);
       box-shadow: none;
+    }
+  }
+  &__advertising{
+    margin: 2rem 0;
+    height:16rem;
+    width: 100%;
+    overflow: hidden;
+    @media screen and (max-width: 500px){
+      height:12rem;
+    }
+    @media screen and (max-width: 440px){
+      height:10rem;
     }
   }
 }

@@ -20,27 +20,57 @@
     margin: 0 2rem;
     width: 24%;
     display: flex;
+    @media screen and (max-width: 440px){
+      display:none;
+     }
     }
 
   &__label{
     margin-left: 2rem;
     color:@white;
+
+    @media screen and (max-width: 768px){
+      font-size: 1.6rem;
+    }
+    @media screen and (max-width: 700px){
+      font-size: 1.4rem;
+    }
+    @media screen and (max-width: 620px){
+      font-size: 1.2rem;
+    }
+    @media screen and (max-width: 500px){
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 440px){
+      display:none;
+    }
   }
 
   &__search{
     width: 80%;
     top: 0;
     left: 0;
+    @media screen and (max-width: 440px){
+      display:none;
+    }
   }
   &__input{
-    padding: 1rem;
+    padding: 1.25rem;
     width: 100%;
-
     border: none;
     color: @gray-middle;
     background-color: @gray;
     font-size: 1.2rem;
     margin: 0;
+
+    @media screen and (max-width: 700px){
+      font-size: 1rem;
+      padding: 1.3rem;
+    }
+    @media screen and (max-width: 440px){
+      display:none;
+    }
+
      &:focus {
         outline: 1px solid @gray;
       }
@@ -77,6 +107,23 @@
     color: @gray-light;
     font-size: 2.3rem;
     line-height: 1;
+
+    @media screen and (max-width: 768px){
+      font-size: 1.8rem;
+      margin-left: 2rem;
+      }
+    @media screen and (max-width: 700px){
+      font-size: 1.6rem;
+      }
+    @media screen and (max-width: 620px){
+      font-size: 1.4rem;
+      }
+    @media screen and (max-width: 500px){
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 440px){
+      font-size: 1.4rem;
+    }
    }
 
 }

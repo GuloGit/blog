@@ -51,15 +51,13 @@ class HomeController extends Controller
 
         $items= Post::where("status", "1")->get();
 
-
-
         if($search){
             foreach ($items as $item){
                 $description=$item->description;
                 $title=$item->title;
                 $text=$item->text;
             //если есть совпадения в название, описание или тексте, то пост добавляется в массив $posts
-                if(stristr($title,"$search")||stristr($description,"$search"||stristr($text,"$search"))){
+                if(stristr($title,"$search")||stristr($description,"$search")||stristr($text,"$search")){
                     $posts->push($item);
                 }
             }
@@ -77,11 +75,12 @@ class HomeController extends Controller
         ]);
     }
 
-    public function showCategory($url)
+    public function showCategory(Request $request, $url)
     {
         $categories=Category::with('posts')->get();
-        $category=Category::with('posts')->where('url', $url)->get();
-        $category_id=$category->first()->id;
+        $current_category=Category::with('posts')->where('url', $url)->get();
+        $category_id=$current_category->first()->id;
+
 
         foreach ($categories as $category){
             $category->PostCount=$category->posts()->where('status', '1')->count();
@@ -91,9 +90,15 @@ class HomeController extends Controller
             ->where("status", "1")
             ->simplePaginate(3);
 
+        if(!$posts->first()){
+            $request->Session()->flash("message", "В этой категории пока нет постов");
+         }
+
+
         return view('home', [
             "categories" => $categories,
-            "posts"=>$posts
+            "posts"=>$posts,
+            "current_category"=> $current_category->first()
         ]);
     }
 
